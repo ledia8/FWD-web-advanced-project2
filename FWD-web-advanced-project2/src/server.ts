@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit  from 'express-rate-limit';
 import errorMiddleware from './middleware/error.middleware';
+import routes from './routes'
 import config from './config';
 import db from './database'
 import { Client } from 'pg';
@@ -29,6 +30,10 @@ app.use(rateLimit({
     legacyHeaders: false,
     message:'too much requests',
 }));
+
+app.use('/api', routes);
+
+
 //add routing for /path
 app.get('/', (req: Request, res: Response) => {
     throw new Error('error throw');
@@ -46,16 +51,16 @@ app.post('/', (req: Request, res: Response) => {
 });
 
 //test db
-db.connect().then((Client) => {
-    return Client.query('SELECT NOW()').then((res) => {
-        Client.release();
-        console.log(res.rows);
-    }).catch((err) => {
-        Client.release();
-        console.log(err.stack);
-    });
+// db.connect().then((Client) => {
+//     return Client.query('SELECT NOW()').then((res) => {
+//         Client.release();
+//         console.log(res.rows);
+//     }).catch((err) => {
+//         Client.release();
+//         console.log(err.stack);
+//     });
 
-});
+// });
 app.use(errorMiddleware);
 
 //error handling 
