@@ -61,7 +61,7 @@ class UserModel{
             const sql = `SELECT id, email, user_name, first_name, last_name from users
             where id = ($1)`;//id=($1)
             //run query
-            const result = await connection.query(sql);
+            const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
             //return created user

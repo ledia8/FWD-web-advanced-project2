@@ -121,7 +121,7 @@ describe ('Test CRUD API methods', ()=>{
         expect(res.body.data.user_name).toBe('lm');      
     });    
 
-})
+});
 
-})
+});
 
