@@ -7,13 +7,13 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const helmet_1 = __importDefault(require("helmet"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
-const error_middleware_1 = __importDefault(require("./middleware/error.middleware"));
+const error_middleware_1 = __importDefault(require("./error.middleware"));
 const routes_1 = __importDefault(require("./routes"));
 const config_1 = __importDefault(require("./config"));
 const PORT = config_1.default.port || 4000;
 //create instance from server
 const app = (0, express_1.default)();
-//middleware to parse incomming request
+//middleware to parse incoming request
 app.use(express_1.default.json());
 //HTTP request logger middleware
 app.use((0, morgan_1.default)('common'));
@@ -27,7 +27,7 @@ app.use((0, express_rate_limit_1.default)({
     legacyHeaders: false,
     message: 'too much requests',
 }));
-app.use('/api', routes_1.default);
+app.use('/', routes_1.default);
 //add routing for /path
 app.get('/', (req, res) => {
     throw new Error('error throw');
@@ -42,16 +42,6 @@ app.post('/', (req, res) => {
         data: req.body
     });
 });
-//test db
-// db.connect().then((Client) => {
-//     return Client.query('SELECT NOW()').then((res) => {
-//         Client.release();
-//         console.log(res.rows);
-//     }).catch((err) => {
-//         Client.release();
-//         console.log(err.stack);
-//     });
-// });
 app.use(error_middleware_1.default);
 //error handling 
 app.use((_req, res) => {

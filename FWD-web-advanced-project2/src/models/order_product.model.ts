@@ -1,10 +1,10 @@
-import Order_Product from '../types/Order_product_type';
+import Order_Product from '../tables_Models/Order_product_type';
 import db from '../database';
 
 
 class Order_ProductModel{
      //create
-    async create(op:Order_Product): Promise<Order_Product>{
+    async createOrder_Product(op:Order_Product): Promise<Order_Product>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -16,7 +16,6 @@ class Order_ProductModel{
             ]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
         }
         catch(error){
@@ -27,7 +26,7 @@ class Order_ProductModel{
     } 
     
     //get all Order_Product
-    async getMany(): Promise<Order_Product[]>{
+    async getManyOrder_Product(): Promise<Order_Product[]>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -37,7 +36,6 @@ class Order_ProductModel{
             const result = await connection.query(sql);
             //release connection
             connection.release();
-            //return created user
             return result.rows;
 
         }
@@ -46,7 +44,7 @@ class Order_ProductModel{
         }
     }
     //get specific Order_Product
-    async getOne(id:string): Promise<Order_Product>{
+    async getOrder_Product(id:string): Promise<Order_Product>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -56,7 +54,6 @@ class Order_ProductModel{
             const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
 
         }
@@ -65,7 +62,7 @@ class Order_ProductModel{
         }
     }
     //update Order_Product
-    async updateOne(op:Order_Product): Promise<Order_Product>{
+    async updateOrder_Product(op:Order_Product): Promise<Order_Product>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -80,7 +77,6 @@ class Order_ProductModel{
             ]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
 
         }
@@ -89,7 +85,7 @@ class Order_ProductModel{
         }
     }
     //delete Order_Product
-    async deleteOne(id:string): Promise<Order_Product>{
+    async deleteOrder_Product(id:string): Promise<Order_Product>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -101,7 +97,6 @@ class Order_ProductModel{
             const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
 
         }

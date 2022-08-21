@@ -1,10 +1,10 @@
-import Order from '../types/Orders_type';
+import Order from '../tables_Models/Orders_type';
 import db from '../database';
 
 
 class OrderModel{
      //create
-    async create(o:Order): Promise<Order>{
+    async createOrder(o:Order): Promise<Order>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -16,7 +16,6 @@ class OrderModel{
             ]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
         }
         catch(error){
@@ -27,7 +26,7 @@ class OrderModel{
     } 
     
     //get all orders
-    async getMany(): Promise<Order[]>{
+    async getManyOrders(): Promise<Order[]>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -37,7 +36,6 @@ class OrderModel{
             const result = await connection.query(sql);
             //release connection
             connection.release();
-            //return created user
             return result.rows;
 
         }
@@ -46,7 +44,7 @@ class OrderModel{
         }
     }
     //get specific order
-    async getOne(id:string): Promise<Order>{
+    async getOneOrder(id:string): Promise<Order>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -56,7 +54,6 @@ class OrderModel{
             const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
 
         }
@@ -65,7 +62,7 @@ class OrderModel{
         }
     }
     //update order
-    async updateOne(o:Order): Promise<Order>{
+    async updateOneOrder(o:Order): Promise<Order>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -80,7 +77,6 @@ class OrderModel{
             ]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
 
         }
@@ -88,8 +84,8 @@ class OrderModel{
             throw new Error(`unable to update data ${(error as Error).message}`);
         }
     }
-    //delete user
-    async deleteOne(id:string): Promise<Order>{
+    //delete order
+    async deleteOneOrder(id:string): Promise<Order>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -101,7 +97,6 @@ class OrderModel{
             const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
-            //return created user
             return result.rows[0];
 
         }

@@ -1,5 +1,5 @@
 import bcryt from 'bcrypt'
-import User from '../types/users_type';
+import User from '../tables_Models/users_type';
 import db from '../database';
 import config from '../config';
 
@@ -9,7 +9,7 @@ const hashpassword = (password:string) =>{
 }
 class UserModel{
     //create
-    async create(u: User): Promise<User>{
+    async createUser(u: User): Promise<User>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -34,7 +34,7 @@ class UserModel{
     } 
     
     //get all users
-    async getMany(): Promise<User[]>{
+    async getManyUsers(): Promise<User[]>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -53,7 +53,7 @@ class UserModel{
         }
     }
     //get specific user
-    async getOne(id:string): Promise<User>{
+    async getOneUser(id:string): Promise<User>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -73,7 +73,7 @@ class UserModel{
         }
     }
     //update user
-    async updateOne(u:User): Promise<User>{
+    async updateOneUser(u:User): Promise<User>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -97,7 +97,7 @@ class UserModel{
         }
     }
     //delete user
-    async deleteOne(id:string): Promise<User>{
+    async deleteOneUser(id:string): Promise<User>{
         try{
             //open connection of db
             const connection = await db.connect();

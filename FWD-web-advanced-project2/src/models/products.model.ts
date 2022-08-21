@@ -1,10 +1,10 @@
-import Products from '../types/Products_type';
+import Products from '../tables_Models/Products_type';
 import db from '../database';
 
 
 class ProductsModel{
      //create
-    async create(p:Products): Promise<Products>{
+    async createProduct(p:Products): Promise<Products>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -16,7 +16,7 @@ class ProductsModel{
             ]);
             //release connection
             connection.release();
-            //return created user
+            //return created Product
             return result.rows[0];
         }
         catch(error){
@@ -27,7 +27,7 @@ class ProductsModel{
     } 
     
     //get all Products
-    async getMany(): Promise<Products[]>{
+    async getManyProducts(): Promise<Products[]>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -37,7 +37,7 @@ class ProductsModel{
             const result = await connection.query(sql);
             //release connection
             connection.release();
-            //return created user
+            //return created Product
             return result.rows;
 
         }
@@ -46,7 +46,7 @@ class ProductsModel{
         }
     }
     //get specific Products
-    async getOne(id:string): Promise<Products>{
+    async getOneProduct(id:string): Promise<Products>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -56,7 +56,7 @@ class ProductsModel{
             const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
-            //return created user
+            //return created Product
             return result.rows[0];
 
         }
@@ -65,7 +65,7 @@ class ProductsModel{
         }
     }
     //update Products
-    async updateOne(p:Products): Promise<Products>{
+    async updateOneProduct(p:Products): Promise<Products>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -80,7 +80,7 @@ class ProductsModel{
             ]);
             //release connection
             connection.release();
-            //return created user
+        
             return result.rows[0];
 
         }
@@ -89,7 +89,7 @@ class ProductsModel{
         }
     }
     //delete Products
-    async deleteOne(id:string): Promise<Products>{
+    async deleteOneProduct(id:string): Promise<Products>{
         try{
             //open connection of db
             const connection = await db.connect();
@@ -101,7 +101,7 @@ class ProductsModel{
             const result = await connection.query(sql,[id]);
             //release connection
             connection.release();
-            //return created user
+            //return created Product
             return result.rows[0];
 
         }

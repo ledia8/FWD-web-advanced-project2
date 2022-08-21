@@ -21,7 +21,7 @@ const hashpassword = (password) => {
 };
 class UserModel {
     //create
-    create(u) {
+    createUser(u) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //open connection of db
@@ -45,7 +45,7 @@ class UserModel {
         });
     }
     //get all users
-    getMany() {
+    getManyUsers() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //open connection of db
@@ -65,7 +65,7 @@ class UserModel {
         });
     }
     //get specific user
-    getOne(id) {
+    getOneUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //open connection of db
@@ -74,7 +74,7 @@ class UserModel {
                 const sql = `SELECT id, email, user_name, first_name, last_name from users
             where id = ($1)`; //id=($1)
                 //run query
-                const result = yield connection.query(sql);
+                const result = yield connection.query(sql, [id]);
                 //release connection
                 connection.release();
                 //return created user
@@ -86,7 +86,7 @@ class UserModel {
         });
     }
     //update user
-    updateOne(u) {
+    updateOneUser(u) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //open connection of db
@@ -111,7 +111,7 @@ class UserModel {
         });
     }
     //delete user
-    deleteOne(id) {
+    deleteOneUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //open connection of db
